@@ -187,4 +187,23 @@ public class GradeController {
         return "verify-id";
     }
 
+    // =====================================================================
+    // POST /verify   -- Process ID and display result
+    // =====================================================================
+    @PostMapping("/verify")
+    public String verifyId(@Valid @ModelAttribute("verifyForm") IDVerifyFormDTO dto,
+                           BindingResult bindingResult,
+                           RedirectAttributes redirectAttrs) {
+        if (bindingResult.hasErrors()) {
+            return "verify-id";
+        }
+
+        String result = gradeService.verifyIdNumber(dto.getIdNumber());
+        redirectAttrs.addFlashAttribute("verifyResult", result);
+        redirectAttrs.addFlashAttribute("verifiedId",   dto.getIdNumber());
+        redirectAttrs.addFlashAttribute("isValid",
+                !result.startsWith("Invalid"));
+        redirectAttrs.addFlashAttribute("verifyForm",   new IDVerifyFormDTO());
+        return "redirect:/verify";
+    }
 }
