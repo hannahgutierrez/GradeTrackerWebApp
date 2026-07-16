@@ -1,4 +1,4 @@
-package ph.edu.dlsu.lbycpob.gradetrackerwebapp;
+package ph.edu.dlsu.lbycpob.gradetracker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
