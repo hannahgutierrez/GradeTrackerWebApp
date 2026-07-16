@@ -86,6 +86,19 @@ public class GradeController {
             return "enter-students";
         }
 
+        if ((boolean) repo.isFull()) {
+            redirectAttrs.addFlashAttribute("errorMessage",
+                    "Maximum of " + GradeConstants.MAX_STUDENTS
+                            + " students reached. Clear data to start over.");
+            return "redirect:/students/enter";
+        }
+
+        Student student = gradeService.buildStudent(dto);
+        repo.addStudent(student);
+
+        redirectAttrs.addFlashAttribute("successMessage",
+                "Student \"" + student.getName() + "\" added successfully.");
+        return "redirect:/students/enter";
     }
 
 }
