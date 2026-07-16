@@ -10,4 +10,8 @@ public class StudentSessionRepository {
     public @Nullable Object getCount() {
         return null;
     }
+
+    public @Nullable Object getAllStudents() {
+        return null;
+    }
 }
