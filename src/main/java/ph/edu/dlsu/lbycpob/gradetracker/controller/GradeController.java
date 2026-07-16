@@ -101,4 +101,15 @@ public class GradeController {
         return "redirect:/students/enter";
     }
 
+    // =====================================================================
+    // POST /students/clear   -- Reset session data (like restarting the app)
+    // =====================================================================
+    @PostMapping("/students/clear")
+    public String clearStudents(RedirectAttributes redirectAttrs) {
+        repo.clear();
+        redirectAttrs.addFlashAttribute("successMessage",
+                "All student data cleared.");
+        return "redirect:/";
+    }
+
 }
