@@ -26,4 +26,15 @@ public class GradeController {
         this.gradeService = gradeService;
     }
 
+    // =====================================================================
+    // GET /    -- Home / Menu  (was GradeTrackerApp.displayMenu())
+    // =====================================================================
+    @GetMapping("/")
+    public String home(Model model) {
+        model.addAttribute("studentCount", repo.getCount());
+        model.addAttribute("maxStudents",  GradeConstants.MAX_STUDENTS);
+        model.addAttribute("repoFull",     repo.isFull());
+        return "index";
+    }
+
 }
