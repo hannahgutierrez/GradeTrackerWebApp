@@ -156,6 +156,23 @@ public class GradeController {
             if (g > highest) { highest = g; highestIndex = i; }
             if (g < lowest)  { lowest  = g; lowestIndex  = i; }
         }
+
+        double classMean = sum / students.size();
+
+        ClassStatsResult stats = new ClassStatsResult();
+        stats.setTotalStudents(students.size());
+        stats.setHighestName(students.get(highestIndex).getName());
+        stats.setHighestGrade(highest);
+        stats.setHighestRank(GradeCalculator.assignLetterRank(highest));
+        stats.setLowestName(students.get(lowestIndex).getName());
+        stats.setLowestGrade(lowest);
+        stats.setLowestRank(GradeCalculator.assignLetterRank(lowest));
+        stats.setClassMean(classMean);
+        stats.setMeanRank(GradeCalculator.assignLetterRank(classMean));
+
+        model.addAttribute("stats",   stats);
+        model.addAttribute("hasData", true);
+        return "stats";
     }
 
 }
