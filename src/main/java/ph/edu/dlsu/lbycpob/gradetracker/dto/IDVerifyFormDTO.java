@@ -1,9 +1,14 @@
 package ph.edu.dlsu.lbycpob.gradetracker.dto;
 
-import org.jspecify.annotations.Nullable;
+import jakarta.validation.constraints.NotBlank;
 
 public class IDVerifyFormDTO {
-    public @Nullable Object getIdNumber() {
-        return null;
-    }
+    @NotBlank(message = "Please enter an ID number.")
+    private String idNumber;
+
+    public String getIdNumber(){
+        return idNumber; }
+
+    public void   setIdNumber(String id)  {
+        this.idNumber = id; }
 }
