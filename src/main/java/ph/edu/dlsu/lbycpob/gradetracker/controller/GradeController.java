@@ -17,4 +17,13 @@ import ph.edu.dlsu.lbycpob.gradetracker.util.GradeConstants;
 import ph.edu.dlsu.lbycpob.gradetracker.util.IDVerifier;
 
 public class GradeController {
+    private final StudentSessionRepository repo;
+    private final GradeService gradeService;
+
+    // Constructor injection -- preferred over @Autowired on fields
+    public GradeController(StudentSessionRepository repo, GradeService gradeService) {
+        this.repo         = repo;
+        this.gradeService = gradeService;
+    }
+
 }
