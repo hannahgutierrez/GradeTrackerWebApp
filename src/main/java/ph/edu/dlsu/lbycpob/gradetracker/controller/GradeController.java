@@ -16,6 +16,8 @@ import ph.edu.dlsu.lbycpob.gradetracker.util.GradeCalculator;
 import ph.edu.dlsu.lbycpob.gradetracker.util.GradeConstants;
 import ph.edu.dlsu.lbycpob.gradetracker.util.IDVerifier;
 
+import java.util.List;
+
 public class GradeController {
     private final StudentSessionRepository repo;
     private final GradeService gradeService;
@@ -110,6 +112,22 @@ public class GradeController {
         redirectAttrs.addFlashAttribute("successMessage",
                 "All student data cleared.");
         return "redirect:/";
+    }
+
+    // =====================================================================
+    // GET /report   -- Grade report table
+    //                  (was ReportPrinter.printReport(repo))
+    // =====================================================================
+    @GetMapping("/report")
+    public String viewReport(Model model) {
+        List<Student> students = (List<Student>) repo.getAllStudents();
+        model.addAttribute("students", students);
+        model.addAttribute("hasData",  !students.isEmpty());
+
+        // Provide GradeCalculator reference for the template to call getRemarks
+        // (Thymeleaf cannot call static methods directly, so we precompute remarks)
+        // The remarks are computed in the template via a helper approach below.
+        return "report";
     }
 
 }
