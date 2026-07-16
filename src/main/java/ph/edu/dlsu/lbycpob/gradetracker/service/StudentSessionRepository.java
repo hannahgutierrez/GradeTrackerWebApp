@@ -18,4 +18,7 @@ public class StudentSessionRepository {
 
     public void addStudent(Student student) {
     }
+
+    public void clear() {
+    }
 }
