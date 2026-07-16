@@ -175,4 +175,16 @@ public class GradeController {
         return "stats";
     }
 
+    // =====================================================================
+    // GET /verify   -- Show the ID verification form
+    //                  (was menu option 4 -> IDVerifier.verifyID())
+    // =====================================================================
+    @GetMapping("/verify")
+    public String showVerifyForm(Model model) {
+        if (!model.containsAttribute("verifyForm")) {
+            model.addAttribute("verifyForm", new IDVerifyFormDTO());
+        }
+        return "verify-id";
+    }
+
 }
