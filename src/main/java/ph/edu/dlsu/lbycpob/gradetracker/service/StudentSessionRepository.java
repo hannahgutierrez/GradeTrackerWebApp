@@ -11,23 +11,15 @@ import java.util.List;
 // ============================================================
 // StudentSessionRepository.java
 // ============================================================
-
+@Component
+@SessionScope
 public class StudentSessionRepository {
-    public @Nullable Object isFull() {
-        return null;
-    }
 
-    public @Nullable Object getCount() {
-        return null;
-    }
+    private final List<Student> students = new ArrayList<>();
 
-    public @Nullable Object getAllStudents() {
-        return null;
+    /** Adds a student to the session list if capacity allows. */
+    public boolean addStudent(Student s) {
+        if (students.size() >= GradeConstants.MAX_STUDENTS) return false;
+        students.add(s);
+        return true;
     }
-
-    public void addStudent(Student student) {
-    }
-
-    public void clear() {
-    }
-}
