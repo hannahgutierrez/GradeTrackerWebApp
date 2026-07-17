@@ -15,3 +15,16 @@ public final class GradeCalculator {
         return sum / scores.length;
     }
 
+    /** Weighted raw grade from the five grade components, rounded to 2 dp. */
+    public static double computeRawGrade(double labPerformance,
+                                         double classParticipation,
+                                         double teacherEvaluation,
+                                         double practicalExam,
+                                         double project) {
+        double raw = (labPerformance     * GradeConstants.LAB_WEIGHT)
+                + (classParticipation * GradeConstants.PARTICIPATION_WEIGHT)
+                + (teacherEvaluation  * GradeConstants.TEACHER_WEIGHT)
+                + (practicalExam      * GradeConstants.EXAM_WEIGHT)
+                + (project            * GradeConstants.PROJECT_WEIGHT);
+        return Math.round(raw * 100.0) / 100.0;
+    }
