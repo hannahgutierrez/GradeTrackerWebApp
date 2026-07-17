@@ -67,3 +67,19 @@ public final class GradeCalculator {
             default    -> "Unknown";
         };
     }
+
+    /** Remark for a letter rank char (overload 2). */
+    public static String getRemarks(char rank) {
+        return switch (Character.toUpperCase(rank)) {
+            case 'S' -> "Excellent";
+            case 'A' -> "Superior";
+            case 'B' -> "Very Good";
+            case 'C' -> "Good";
+            case 'D' -> "Satisfactory";
+            case 'E' -> "Fair";
+            case 'P' -> "Poor/Passed";
+            case 'F' -> "Failed";
+            default  -> "Unknown";
+        };
+    }
+}
