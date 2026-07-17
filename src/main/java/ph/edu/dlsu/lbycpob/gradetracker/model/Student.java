@@ -1,11 +1,25 @@
 package ph.edu.dlsu.lbycpob.gradetracker.model;
 
+// ============================================================
+// Student.java
+// ============================================================
 public class Student {
-    public String getName() {
-        return "";
-    }
 
-    public double getRawGrade() {
-        return 0;
+    private String name;
+    private String idNumber;
+    private double rawGrade;
+    private String numericGrade;
+    private char   letterRank;
+
+    /** Default constructor (required by Spring Data and Thymeleaf). */
+    public Student() { }
+
+    /** Full constructor -- mirrors the original desktop signature. */
+    public Student(String name, String idNumber,
+                   double rawGrade, String numericGrade, char letterRank) {
+        this.name         = name.trim();
+        this.idNumber     = idNumber.trim();
+        this.rawGrade     = Math.round(rawGrade * 100.0) / 100.0;
+        this.numericGrade = numericGrade.trim();
+        this.letterRank   = Character.toUpperCase(letterRank);
     }
-}
