@@ -30,3 +30,18 @@ public class Student {
     public double getRawGrade()    { return rawGrade; }
     public String getNumericGrade(){ return numericGrade; }
     public char   getLetterRank()  { return letterRank; }
+
+    // ---- Setters (used by Thymeleaf / tests) ----
+    public void setName(String name)               { this.name = name; }
+    public void setIdNumber(String idNumber)       { this.idNumber = idNumber; }
+    public void setRawGrade(double rawGrade)       { this.rawGrade = rawGrade; }
+    public void setNumericGrade(String numericGrade){ this.numericGrade = numericGrade; }
+    public void setLetterRank(char letterRank)     { this.letterRank = letterRank; }
+
+    @Override
+    public String toString() {
+        return "Student{name='" + name + "', id='" + idNumber
+                + "', raw=" + rawGrade + ", grade=" + numericGrade
+                + ", rank=" + letterRank + '}';
+    }
+}
