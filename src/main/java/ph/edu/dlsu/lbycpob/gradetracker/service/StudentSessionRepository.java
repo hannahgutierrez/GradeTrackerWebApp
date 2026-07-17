@@ -38,3 +38,8 @@ public class StudentSessionRepository {
     /** Total number of students currently stored. */
     public int getCount() { return students.size(); }
 
+    /** Clears all students (equivalent to resetting the app on the desktop). */
+    public void clear() { students.clear(); }
+
+    /** True when the list has reached MAX_STUDENTS. */
+    public boolean isFull() { return students.size() >= GradeConstants.MAX_STUDENTS; }
