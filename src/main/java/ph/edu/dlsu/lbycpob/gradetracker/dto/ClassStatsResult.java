@@ -15,32 +15,33 @@ public class ClassStatsResult {
     private double classMean;
     private char   meanRank;
 
+    // ---- Getters and setters ----
 
-public class ClassStatsResult {
-    public void setMeanRank(Object o) {
-    }
+    public int    getTotalStudents()              { return totalStudents; }
+    public void   setTotalStudents(int v)         { this.totalStudents = v; }
 
-    public void setClassMean(double classMean) {
-    }
+    public String getHighestName()                { return highestName; }
+    public void   setHighestName(String v)        { this.highestName = v; }
 
-    public void setLowestRank(Object o) {
-    }
+    public double getHighestGrade()               { return highestGrade; }
+    public void   setHighestGrade(double v)       { this.highestGrade = v; }
 
-    public void setLowestGrade(double lowest) {
-    }
+    public char   getHighestRank()                { return highestRank; }
+    public void   setHighestRank(char v)          { this.highestRank = v; }
 
-    public void setLowestName(String name) {
-    }
+    public String getLowestName()                 { return lowestName; }
+    public void   setLowestName(String v)         { this.lowestName = v; }
 
-    public void setHighestRank(Object o) {
-    }
+    public double getLowestGrade()                { return lowestGrade; }
+    public void   setLowestGrade(double v)        { this.lowestGrade = v; }
 
-    public void setHighestGrade(double highest) {
-    }
+    public char   getLowestRank()                 { return lowestRank; }
+    public void   setLowestRank(char v)           { this.lowestRank = v; }
 
-    public void setHighestName(String name) {
-    }
+    public double getClassMean()                  { return classMean; }
+    public void   setClassMean(double v)          { this.classMean = v; }
 
-    public void setTotalStudents(int size) {
-    }
+    public char   getMeanRank()                   { return meanRank; }
+    public void   setMeanRank(char v)             { this.meanRank = v; }
 }
+
