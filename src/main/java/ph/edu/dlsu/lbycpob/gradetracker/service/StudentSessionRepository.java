@@ -23,3 +23,18 @@ public class StudentSessionRepository {
         students.add(s);
         return true;
     }
+
+    /** Returns an unmodifiable view of the student list. */
+    public List<Student> getAllStudents() {
+        return Collections.unmodifiableList(students);
+    }
+
+    /** Returns the student at the given zero-based index, or null. */
+    public Student getStudent(int index) {
+        if (index < 0 || index >= students.size()) return null;
+        return students.get(index);
+    }
+
+    /** Total number of students currently stored. */
+    public int getCount() { return students.size(); }
+
