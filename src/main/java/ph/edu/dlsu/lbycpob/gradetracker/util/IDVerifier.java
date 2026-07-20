@@ -50,3 +50,15 @@ public final class IDVerifier {
 
     return "Valid " + getIDRole(idNumber) + " ID number.";
 }
+
+    /** Dot product of the ID digits against descending weights [8..1]. */
+    private static int calculateDotProduct(String idNumber) {
+        final int[] WEIGHTS = {8, 7, 6, 5, 4, 3, 2, 1};
+        int sum = 0;
+        for (int i = 0; i < idNumber.length(); i++) {
+            sum += Character.getNumericValue(idNumber.charAt(i)) * WEIGHTS[i];
+        }
+        return sum;
+    }
+}
+
