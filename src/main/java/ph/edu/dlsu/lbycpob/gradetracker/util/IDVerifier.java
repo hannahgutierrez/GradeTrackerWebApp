@@ -31,8 +31,22 @@ public final class IDVerifier {
         return (quotient >= GradeConstants.FACULTY_THRESHOLD) ? "faculty" : "student";
     }
 
-/**
- * Returns a human-readable validation result message.
- *   Invalid -> message starts with "Invalid"
- *   Valid   -> "Valid faculty ID number." or "Valid student ID number."
- */
+    /**
+     * * Returns a human-readable validation result message.
+     * *   Invalid -> message starts with "Invalid"
+     * *   Valid   -> "Valid faculty ID number." or "Valid student ID number."
+     **/
+    public static String validateID(String idNumber) {
+    if (idNumber == null || idNumber.length() != GradeConstants.ID_LENGTH)
+        return "Invalid ID number. Please enter "
+                + GradeConstants.ID_LENGTH + " digits.";
+
+    if (!idNumber.chars().allMatch(Character::isDigit))
+        return "Invalid ID number. All characters must be digits.";
+
+    if (!isValidID(idNumber))
+        return "Invalid ID number. Dot product must be divisible by "
+                + GradeConstants.ID_DIVISOR + ".";
+
+    return "Valid " + getIDRole(idNumber) + " ID number.";
+}
