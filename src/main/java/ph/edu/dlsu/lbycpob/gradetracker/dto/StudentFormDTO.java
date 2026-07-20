@@ -15,3 +15,25 @@ public class StudentFormDTO {
     @Size(min = 8, max = 8, message = "ID number must be exactly 8 digits.")
     @Pattern(regexp = "\\d{8}", message = "ID number must contain exactly 8 digits.")
     private String idNumber;
+
+    // ---- Lab Performance: 5 module scores (40% of grade) ----
+    @DecimalMin(value = "0.0", message = "Module 1 score must be 0 - 100.")
+    @DecimalMax(value = "100.0", message = "Module 1 score must be 0 - 100.")
+    private double module1;
+
+    @DecimalMin(value = "0.0", message = "Module 2 score must be 0 - 100.")
+    @DecimalMax(value = "100.0", message = "Module 2 score must be 0 - 100.")
+    private double module2;
+
+    @DecimalMin(value = "0.0", message = "Module 3 score must be 0 - 100.")
+    @DecimalMax(value = "100.0", message = "Module 3 score must be 0 - 100.")
+    private double module3;
+
+    @DecimalMin(value = "0.0", message = "Module 4 score must be 0 - 100.")
+    @DecimalMax(value = "100.0", message = "Module 4 score must be 0 - 100.")
+    private double module4;
+
+    @DecimalMin(value = "0.0", message = "Module 5 score must be 0 - 100.")
+    @DecimalMax(value = "100.0", message = "Module 5 score must be 0 - 100.")
+    private double module5;
+
