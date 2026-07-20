@@ -16,9 +16,37 @@ import ph.edu.dlsu.lbycpob.gradetracker.util.GradeCalculator;
 import ph.edu.dlsu.lbycpob.gradetracker.util.GradeConstants;
 import ph.edu.dlsu.lbycpob.gradetracker.util.IDVerifier;
 
+
 import java.util.List;
 
+// ============================================================
+// GradeController.java
+// NOTEs:
+//   The original GradeTrackerApp.displayMenu() drove a do-while
+//   loop where user keystrokes mapped to method calls:
+//     "1" -> inputStudentData()
+//     "2" -> ReportPrinter.printReport(repo)
+//     "3" -> ReportPrinter.printClassStats(repo)
+//     "4" -> idVerifier.verifyID()
+//     "5" -> exit
+//
+//   In the web version each of those actions is a URL:
+//     GET  /                 -> home page (menu)
+//     GET  /students/enter   -> student entry form (was option 1)
+//     POST /students/add     -> process form, add student, redirect
+//     POST /students/clear   -> clear session data
+//     GET  /report           -> grade report table (was option 2)
+//     GET  /stats            -> class statistics (was option 3)
+//     GET  /verify           -> ID verification form (was option 4)
+//     POST /verify           -> process and display result
+//
+//   ReportPrinter.printReport() and printClassStats() are replaced
+//   by Thymeleaf templates (report.html, stats.html) that receive
+//   model data built here.
+// ============================================================
+@Controller
 public class GradeController {
+
     private final StudentSessionRepository repo;
     private final GradeService gradeService;
 
@@ -88,7 +116,7 @@ public class GradeController {
             return "enter-students";
         }
 
-        if ((boolean) repo.isFull()) {
+        if (repo.isFull()) {
             redirectAttrs.addFlashAttribute("errorMessage",
                     "Maximum of " + GradeConstants.MAX_STUDENTS
                             + " students reached. Clear data to start over.");
@@ -113,14 +141,13 @@ public class GradeController {
                 "All student data cleared.");
         return "redirect:/";
     }
-
     // =====================================================================
     // GET /report   -- Grade report table
     //                  (was ReportPrinter.printReport(repo))
     // =====================================================================
     @GetMapping("/report")
     public String viewReport(Model model) {
-        List<Student> students = (List<Student>) repo.getAllStudents();
+        List<Student> students = repo.getAllStudents();
         model.addAttribute("students", students);
         model.addAttribute("hasData",  !students.isEmpty());
 
@@ -136,7 +163,7 @@ public class GradeController {
     // =====================================================================
     @GetMapping("/stats")
     public String viewStats(Model model) {
-        List<Student> students = (List<Student>) repo.getAllStudents();
+        List<Student> students = repo.getAllStudents();
 
         if (students.isEmpty()) {
             model.addAttribute("hasData", false);
