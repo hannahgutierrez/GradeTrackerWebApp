@@ -37,3 +37,19 @@ public class StudentFormDTO {
     @DecimalMax(value = "100.0", message = "Module 5 score must be 0 - 100.")
     private double module5;
 
+    // ---- Other grade components ----
+    @DecimalMin(value = "0.0", message = "Class Participation must be 0 - 100.")
+    @DecimalMax(value = "100.0", message = "Class Participation must be 0 - 100.")
+    private double classParticipation;
+
+    @DecimalMin(value = "0.0", message = "Teacher's Evaluation must be 0 - 100.")
+    @DecimalMax(value = "100.0", message = "Teacher's Evaluation must be 0 - 100.")
+    private double teacherEvaluation;
+
+    @DecimalMin(value = "0.0", message = "Practical Exam score must be 0 - 100.")
+    @DecimalMax(value = "100.0", message = "Practical Exam score must be 0 - 100.")
+    private double practicalExam;
+
+    @DecimalMin(value = "0.0", message = "Project score must be 0 - 100.")
+    @DecimalMax(value = "100.0", message = "Project score must be 0 - 100.")
+    private double project;
