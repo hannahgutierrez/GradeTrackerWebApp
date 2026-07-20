@@ -6,13 +6,51 @@ import ph.edu.dlsu.lbycpob.gradetracker.model.Student;
 import ph.edu.dlsu.lbycpob.gradetracker.util.GradeCalculator;
 import ph.edu.dlsu.lbycpob.gradetracker.util.IDVerifier;
 
-
+// ============================================================
+// GradeService.java
+// ============================================================
+@Service
 public class GradeService {
-    public Student buildStudent(@Valid StudentFormDTO dto) {
-        return null;
+
+    /**
+     * Converts a validated StudentFormDTO into a fully computed Student object.
+     * Mirrors the logic of StudentInputHandler.inputOneStudent() from the desktop,
+     * but without the IO prompts.
+     */
+    public Student buildStudent(StudentFormDTO dto) {
+
+        // Replaces inputLabPerformance() -- compute average of 5 module scores
+        double[] moduleScores = {
+                dto.getModule1(), dto.getModule2(), dto.getModule3(),
+                dto.getModule4(), dto.getModule5()
+        };
+        double labPerformance = GradeCalculator.computeAverage(moduleScores);
+
+        // Replaces GradeCalculator.computeRawGrade(...) call in inputOneStudent()
+        double rawGrade = GradeCalculator.computeRawGrade(
+                labPerformance,
+                dto.getClassParticipation(),
+                dto.getTeacherEvaluation(),
+                dto.getPracticalExam(),
+                dto.getProject()
+        );
+        String numericGrade = GradeCalculator.assignNumericGrade(rawGrade);
+        char   letterRank   = GradeCalculator.assignLetterRank(rawGrade);
+
+        return new Student(
+                dto.getName(),
+                dto.getIdNumber(),
+                rawGrade,
+                numericGrade,
+                letterRank
+        );
     }
 
-    public String verifyIdNumber(@Nullable Object idNumber) {
-        return "";
+    /**
+     * Validates the ID number via IDVerifier and returns the result message.
+     * Replaces the interactive do-while loop in IDVerifier.verifyID().
+     */
+    public String verifyIdNumber(String idNumber) {
+        return IDVerifier.validateID(idNumber == null ? "" : idNumber.trim());
     }
 }
