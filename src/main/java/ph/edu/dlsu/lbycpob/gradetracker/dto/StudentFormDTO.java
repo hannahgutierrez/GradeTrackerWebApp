@@ -78,3 +78,12 @@ public class StudentFormDTO {
 
     public double getClassParticipation()    { return classParticipation; }
     public void   setClassParticipation(double v) { this.classParticipation = v; }
+
+    public double getTeacherEvaluation()     { return teacherEvaluation; }
+    public void   setTeacherEvaluation(double v)  { this.teacherEvaluation = v; }
+
+    public double getPracticalExam()         { return practicalExam; }
+    public void   setPracticalExam(double v) { this.practicalExam = v; }
+
+    public double getProject()               { return project; }
+    public void   setProject(double v)       { this.project = v; } }
